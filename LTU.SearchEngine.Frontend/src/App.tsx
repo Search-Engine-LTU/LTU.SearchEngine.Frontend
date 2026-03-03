@@ -1,14 +1,17 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { SearchInput } from './components/SearchInput'
 
 function App() {
-
   return (
     <>
-      <h1>LTU Search Engine</h1>
+      <header>
+        <h1>LTU Search Engine</h1>
+      </header>
+      <main>
+        <SearchInput />
+      </main>
     </>
-  )
+  );
 }
 
 export default App
