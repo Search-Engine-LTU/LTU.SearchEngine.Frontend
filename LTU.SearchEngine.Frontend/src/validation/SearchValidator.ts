@@ -64,8 +64,6 @@ export const validateQuery = (query: string): ValidationResult => {
         };
     }
 
-    // --- WARNING SECTION (Based on Jean Paul Hanna's feedback) ---
-
     // 6. Multiple consecutive logical operators (Architecture constraint)
     // Now handled as a warning to allow the backend to handle the noise.
     if (/\b(AND|OR|NOT)\s+(AND|OR|NOT)\b/i.test(trimmedQuery)) {
