@@ -8,5 +8,6 @@ export interface SearchResultItem {
 export interface SearchResponse {
     results: SearchResultItem[];
     currentPage: number; // FRQ-4002
+    pageSize: number;
     totalPages: number;
 }

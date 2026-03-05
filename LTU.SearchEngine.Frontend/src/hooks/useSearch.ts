@@ -18,8 +18,12 @@ export const useSearch = () => {
             return; 
         }
 
+           try {
         setIsLoading(true);
-        try {
+
+        // simulating API delay (NFRQ-6001 req: response within 10s)
+        await new Promise(resolve => setTimeout(resolve, 800));
+     
             // Here we going to make our API call to backend.api (searchcontroller)
             // Exempel: const response = await FrontendClient.get(`/api/search?q=${encodeURIComponent(query)}`);
             // setResults(response.data);
