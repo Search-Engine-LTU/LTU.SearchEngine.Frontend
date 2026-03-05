@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useSearch } from "../hooks/useSearch";
 
-export const SearchInput: React.FC = () => {
+interface SearchInputProps {
+  onSearch: (query: string) => void;
+  isLoading: boolean;
+}
+
+export const SearchInput = ({ onSearch, isLoading }: SearchInputProps) => {
   const [inputValue, setInputValue] = useState("");
-  const { executeSearch, error, warning, isLoading } = useSearch();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    executeSearch(inputValue);
+    onSearch(inputValue);
   };
-
-  const inputBorderColor = error ? "red" : warning ? "#ffcc00" : "#ccc";
 
   return (
     <div style={{ maxWidth: "400px", margin: "0 auto" }}>
@@ -23,7 +24,7 @@ export const SearchInput: React.FC = () => {
           style={{
             flex: 1,
             padding: "8px",
-            border: `2px solid ${inputBorderColor}`,
+            border: "2px solid #ccc",
             outline: "none",
             borderRadius: "4px",
           }}
@@ -32,18 +33,6 @@ export const SearchInput: React.FC = () => {
           {isLoading ? "Searching..." : "Search"}
         </button>
       </form>
-
-      {error && (
-        <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>
-          {error}
-        </p>
-      )}
-
-      {warning && !error && (
-        <p style={{ color: "#d4a000", fontSize: "14px", marginTop: "4px" }}>
-          {warning}
-        </p>
-      )}
     </div>
   );
 };
