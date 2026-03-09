@@ -1,5 +1,6 @@
 // Interface that matches our SearchResponse in backend
 export interface SearchResultItem {
+    id: number;
     title: string;    // FRQ-3013
     url: string;
     snippet: string;  // FRQ-3014
