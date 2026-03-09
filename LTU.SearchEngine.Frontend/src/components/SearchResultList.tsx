@@ -7,8 +7,8 @@ export const SearchResultList = ({
 }) => {
   return (
     <div className="search-results">
-      {results.map((result, index) => (
-        <div key={index} style={{ marginBottom: "20px" }}>
+      {results.map((result) => (
+        <div key={result.id} style={{ marginBottom: "20px" }}>
           {/* FRQ-3013: Visar rubriken */}
           <a
             href={result.url}
