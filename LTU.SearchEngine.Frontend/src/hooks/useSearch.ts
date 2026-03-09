@@ -25,7 +25,20 @@ export const useSearch = () => {
 
         // simulating API delay (NFRQ-6001 req: response within 10s)
         await new Promise(resolve => setTimeout(resolve, 800));
-     setSearchData(mockSearchResults);
+
+            //if user searches on word "empty" we pretend that backend doesnt find anything
+            if(query.toLowerCase() === "empty") {
+                setSearchData({
+                  results: [],
+                totalResults: 0,
+                currentPage: 1,
+                pageSize: 10,
+                totalPages: 0  
+                });
+                return;
+            }
+
+        setSearchData(mockSearchResults);
             // Here we going to make our API call to backend.api (searchcontroller)
             // Exempel: const response = await FrontendClient.get(`/api/search?q=${encodeURIComponent(query)}`);
             // setResults(response.data);
