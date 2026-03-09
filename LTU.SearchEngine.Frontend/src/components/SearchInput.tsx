@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+const inputStyles: React.CSSProperties = {
+  flex: 1,
+  padding: "8px",
+  border: "2px solid #ccc",
+  outline: "none",
+  borderRadius: "4px",
+};
+
 interface SearchInputProps {
   onSearch: (query: string) => void;
   isLoading: boolean;
@@ -10,7 +18,10 @@ export const SearchInput = ({ onSearch, isLoading }: SearchInputProps) => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!inputValue.trim()) return;
+
     onSearch(inputValue);
+    setInputValue(""); 
   };
 
   return (
@@ -21,13 +32,7 @@ export const SearchInput = ({ onSearch, isLoading }: SearchInputProps) => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder='Try "cats" AND "dogs"...'
-          style={{
-            flex: 1,
-            padding: "8px",
-            border: "2px solid #ccc",
-            outline: "none",
-            borderRadius: "4px",
-          }}
+          style={inputStyles}
         />
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Searching..." : "Search"}
