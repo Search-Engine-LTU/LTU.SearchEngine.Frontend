@@ -9,7 +9,7 @@ export const useSearch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [searchData, setSearchData] = useState<SearchResponse | undefined>(undefined);
 
-    const executeSearch = async (query: string) => {
+    const executeSearch = async (query: string, page: number = 1) => {
         const validation = validateQuery(query);
 
         setError(validation.errorMessage);
@@ -29,7 +29,19 @@ export const useSearch = () => {
             // Here we going to make our API call to backend.api (searchcontroller)
             // Exempel: const response = await FrontendClient.get(`/api/search?q=${encodeURIComponent(query)}`);
             // setResults(response.data);
+
+            const pageSize = 10;
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+
+        const paginatedResults = mockSearchResults.results.slice(startIndex, endIndex);
             
+        setSearchData({
+            ...mockSearchResults,
+            results: paginatedResults,
+            currentPage: page
+        });
+
             console.log("Valid query sent to API:", query); 
         } catch (err) {
             setError("A network error occurred while searching.");

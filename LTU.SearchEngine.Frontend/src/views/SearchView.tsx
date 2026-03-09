@@ -1,24 +1,41 @@
-import { useSearch } from '../hooks/useSearch';
-import { SearchInput } from '../components/SearchInput';
-import { SearchResultList } from '../components/SearchResultList';
+import { useState } from "react";
+import { useSearch } from "../hooks/useSearch";
+import { SearchInput } from "../components/SearchInput";
+import { SearchResultList } from "../components/SearchResultList";
+import { Pagination } from "../components/Pagination";
 
 export const SearchView = () => {
   const { executeSearch, searchData, isLoading, error, warning } = useSearch();
 
+  const [submittedQuery, setSubmittedQuery] = useState("");
+
+  const handleSearch = (query: string) => {
+    setSubmittedQuery(query);
+    executeSearch(query, 1);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    executeSearch(submittedQuery, newPage);
+  };
+
   return (
     <div className="search-view">
-      <SearchInput onSearch={executeSearch} isLoading={isLoading} />
-      
-      {/* Felhantering och varningar samlade */}
+      <SearchInput onSearch={handleSearch} isLoading={isLoading} />
+
       {error && <p className="error-message">{error}</p>}
       {warning && <p className="warning-message">{warning}</p>}
 
-      {/* Resultat och Paginering (Issue #11) */}
       {searchData && (
         <>
           <p>Found {searchData.totalResults} results</p>
           <SearchResultList results={searchData.results} />
-          {/* Här hamnar Pagination-komponenten sen */}
+          {
+            <Pagination
+              currentPage={searchData.currentPage}
+              totalPages={searchData.totalPages}
+              onPageChange={handlePageChange}
+            />
+          }
         </>
       )}
     </div>
