@@ -1,13 +1,13 @@
 import type { SearchResultItem } from "../models/SearchInterface";
 
 export const SearchResultList = ({
-  results,
+  searchResults,
 }: {
-  results: SearchResultItem[];
+  searchResults: SearchResultItem[];
 }) => {
   return (
     <div className="search-results">
-      {results.map((result) => (
+      {searchResults.map((result) => (
         <div key={result.id} style={{ marginBottom: "20px" }}>
           {/* FRQ-3013: Visar rubriken */}
           <a
@@ -19,7 +19,7 @@ export const SearchResultList = ({
           <br />
           <small>{result.url}</small>
           {/* FRQ-3014: Renderar snippet med HTML-highlighting */}
-          <p dangerouslySetInnerHTML={{ __html: result.snippet }} />
+          {/* <p dangerouslySetInnerHTML={{ __html: result.snippet }} /> */}
         </div>
       ))}
     </div>

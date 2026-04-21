@@ -3,13 +3,17 @@ export interface SearchResultItem {
     id: number;
     title: string;    // FRQ-3013
     url: string;
-    snippet: string;  // FRQ-3014
+    pageRankScore: number;
+    TflDfScore: number;
+    // snippet: string;  // FRQ-3014
+    language: string
 }
 
 export interface SearchResponse {
-    results: SearchResultItem[];
+    searchResults: SearchResultItem[];
     currentPage: number; // FRQ-4002
     pageSize: number;
     totalResults: number;
     totalPages: number;
+    message: string; 
 }

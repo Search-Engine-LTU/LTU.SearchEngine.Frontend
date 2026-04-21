@@ -41,7 +41,8 @@ export const SearchView = () => {
       {searchData && (
         <>
           <p>Found {searchData.totalResults} results</p>
-          <SearchResultList results={searchData.results} />
+          <small>{`Time taken: ${searchData.message}`}</small>
+          <SearchResultList searchResults = {searchData.searchResults} />
           {
             <Pagination
               currentPage={searchData.currentPage}
