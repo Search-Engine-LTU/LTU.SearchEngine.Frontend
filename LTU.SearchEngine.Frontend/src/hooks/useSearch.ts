@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { validateQuery } from '../validation/SearchValidator';
 import type { SearchResponse } from '../models/SearchInterface';
-import { fetchFromApi } from '../api/SearchApiFetch';
+import { fetchFromApi } from '../Services/SearchApiFetch';
 import { CustomError } from '../classes/customError';
 
 
