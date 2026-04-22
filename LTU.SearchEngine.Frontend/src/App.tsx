@@ -1,3 +1,4 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css'
 import { SearchView } from './views/SearchView';
 
@@ -10,7 +11,12 @@ function App() {
         <h1>LTU Search Engine</h1>
       </header>
       <main>
-      <SearchView/>
+      <Routes>
+        <Route path='/en' element={ <SearchView />} />
+        <Route path='/sv' element={ <SearchView />} />
+        {/* Fallback to Swedish version */}
+        <Route path='*' element={ <Navigate to='/sv' />} /> 
+      </Routes>
       </main>
     </>
   );

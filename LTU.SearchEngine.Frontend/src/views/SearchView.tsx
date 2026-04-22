@@ -4,18 +4,20 @@ import { SearchInput } from "../components/SearchInput";
 import { SearchResultList } from "../components/SearchResultList";
 import { Pagination } from "../components/Pagination";
 
+
 export const SearchView = () => {
   const { executeSearch, searchData, isLoading, error, warning } = useSearch();
-
   const [submittedQuery, setSubmittedQuery] = useState("");
+
+  const currentLanguage = location.pathname.startsWith('/en') ? 'en' : 'sv';
 
   const handleSearch = (query: string) => {
     setSubmittedQuery(query);
-    executeSearch(query, 1);
+    executeSearch(query, 1, currentLanguage);
   };
 
   const handlePageChange = (newPage: number) => {
-    executeSearch(submittedQuery, newPage);
+    executeSearch(submittedQuery, newPage, currentLanguage);
   };
 
   return (

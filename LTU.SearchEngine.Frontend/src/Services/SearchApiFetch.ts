@@ -4,7 +4,7 @@
  * integrating with the C# Backend API.
  */
 
-import { BASE_URL } from "../helper/constants";
+import { BASE_URL } from "../helpers/constants";
 import { CustomError } from "../classes/customError";
 
 /**
