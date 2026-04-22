@@ -26,11 +26,16 @@ export const fetchFromApi = async (query: string, page: number = 0, language: st
     // Here we add fetch call to our controller in backend later
     console.log(`Searching for: ${query} on page ${page}`);
     
-    const url = `${BASE_URL}/search?query=${encodeURIComponent(query)}&language=${encodeURIComponent(language)}`;
+    const params = new URLSearchParams({
+        query: encodeURIComponent(query),
+        language: encodeURIComponent(language),
+        // pageNumber: page.toString()
+    });
+ 
+    const url = `${BASE_URL}/search?${params}`;
     
     const response = await fetch(url);
     
-    console.log(`Result: ${response}`);
 
     if (!response.ok){
         let errorMessage = "An unexpected error occurred";
