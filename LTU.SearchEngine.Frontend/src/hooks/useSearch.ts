@@ -5,9 +5,9 @@
 
 import { useState } from 'react';
 import { validateQuery } from '../validation/SearchValidator';
-import { fetchFromApi } from '../Services/SearchApiFetch';
-import { CustomError } from '../classes/customError';
 import type { SearchResponse } from '../models/SearchInterface';
+import { fetchFromApi } from '../api/SearchApiFetch';
+import { CustomError } from '../classes/customError';
 
 
 /**
@@ -25,8 +25,6 @@ export const useSearch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [searchData, setSearchData] = useState<SearchResponse | undefined>(undefined);
 
-    
-
     /**
      * Validates and executes a search query.
      * 1. Resets previous state.
@@ -36,7 +34,7 @@ export const useSearch = () => {
      * @param {string} query - The search query to execute.
      * @param {number} [page=1] - The page number to fetch.
      */
-    const executeSearch = async (query: string, page: number = 1, language: string) => {
+    const executeSearch = async (query: string, page: number = 1) => {
         const validation = validateQuery(query);
 
         setError(validation.errorMessage);
@@ -49,7 +47,7 @@ export const useSearch = () => {
         try {
 
             setIsLoading(true);
-            const data = await fetchFromApi(query, page, language);
+            const data = await fetchFromApi(query, page)
             
             setSearchData({...data});
 
