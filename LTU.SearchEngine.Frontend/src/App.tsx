@@ -7,7 +7,8 @@ import { LanguageToggle } from './components/LanguageToggle';
 
 
 function App() {
-
+  useSearchLanguageReDirector();
+  
   return (
     <>
       <header className='app-header'>
