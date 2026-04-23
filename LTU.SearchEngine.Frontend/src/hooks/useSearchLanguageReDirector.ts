@@ -23,8 +23,8 @@ export const useSearchLanguageReDirector = () => {
             const lastLanguage = Cookies.get(LANGUAGE_COOKIE_NAME);
             
             if (lastLanguage === 'en') navigate('/en', { replace: true });
-            else if (lastLanguage === 'sv') navigate('/sv', { replace: true });
+            else navigate('/sv', { replace: true });
         } 
-        
+
     }, [navigate, location.pathname]);
 }   
