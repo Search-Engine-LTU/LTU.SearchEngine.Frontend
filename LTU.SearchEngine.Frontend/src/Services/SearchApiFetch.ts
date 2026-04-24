@@ -27,8 +27,8 @@ export const fetchFromApi = async (query: string, page: number = 0, language: st
     console.log(`Searching for: ${query} on page ${page}`);
     
     const params = new URLSearchParams({
-        query: encodeURIComponent(query),
-        language: encodeURIComponent(language),
+        query: query,
+        language: language,
         // pageNumber: page.toString()
     });
  
