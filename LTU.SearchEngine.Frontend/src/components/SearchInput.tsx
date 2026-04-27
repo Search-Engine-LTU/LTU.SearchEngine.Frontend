@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const inputStyles: React.CSSProperties = {
   flex: 1,
@@ -14,23 +14,26 @@ interface SearchInputProps {
 }
 
 export const SearchInput = ({ onSearch, isLoading }: SearchInputProps) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleSearch = (e: React.FormEvent) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
+ 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
 
-    onSearch(inputValue);
-    setInputValue(""); 
+    const formData = new FormData(e.currentTarget); 
+    const newQuery = formData.get("query-input") as string;
+    setSearchParams({ query: newQuery });
+    onSearch(newQuery);
   };
 
   return (
     <div style={{ maxWidth: "400px", margin: "0 auto" }}>
       <form onSubmit={handleSearch} style={{ display: "flex", gap: "8px" }}>
         <input
+          name="query-input"
           type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          key={query}
+          defaultValue={query}
           placeholder='Try "cats" AND "dogs"...'
           style={inputStyles}
         />

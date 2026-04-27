@@ -11,6 +11,7 @@ export const SearchView = () => {
   const [submittedQuery, setSubmittedQuery] = useState("");
   const { currentLanguage } = useLanguage();
 
+
   const handleSearch = (query: string) => {
     setSubmittedQuery(query);
     executeSearch(query, 1, currentLanguage);
