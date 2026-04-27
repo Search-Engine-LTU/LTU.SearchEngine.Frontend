@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearch } from "../hooks/useSearch";
 import { SearchInput } from "../components/SearchInput";
 import { SearchResultList } from "../components/SearchResultList";
