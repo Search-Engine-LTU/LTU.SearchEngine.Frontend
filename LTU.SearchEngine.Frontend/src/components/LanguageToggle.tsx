@@ -1,15 +1,21 @@
 import '../css/LanguageToggle.css'
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 
 export const LanguageToggle = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const [searchParams] = useSearchParams();
 
-    const isEnglish = pathname.startsWith('/en');
+    const isEnglish = pathname.startsWith('/en'); 
 
     const handleToggle = () => {
         const newPath = isEnglish ? '/sv' : '/en';
-        navigate(newPath);
+        const currentQueryString = searchParams.toString();
+
+        navigate({
+            pathname: newPath,
+            search: currentQueryString ? `?${currentQueryString}` : ""
+        });
     }
 
     return (

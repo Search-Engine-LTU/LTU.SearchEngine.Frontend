@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearch } from "../hooks/useSearch";
 import { SearchInput } from "../components/SearchInput";
 import { SearchResultList } from "../components/SearchResultList";
@@ -10,6 +10,7 @@ export const SearchView = () => {
   const { executeSearch, searchData, isLoading, error, warning } = useSearch();
   const [submittedQuery, setSubmittedQuery] = useState("");
   const { currentLanguage } = useLanguage();
+
 
   const handleSearch = (query: string) => {
     setSubmittedQuery(query);
