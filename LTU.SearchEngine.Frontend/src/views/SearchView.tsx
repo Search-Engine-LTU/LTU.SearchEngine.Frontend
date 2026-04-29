@@ -43,6 +43,7 @@ export const SearchView = () => {
 
       {searchData && (
         <>
+          <p>Ignored common terms: {searchData.ignoredTokens?.map((term) => term.token).join(', ') || 'None'}</p>
           <p>Found {searchData.totalResults} results</p>
           <small>{`Time taken: ${searchData.message}`}</small>
           <SearchResultList searchResults = {searchData.searchResults} />

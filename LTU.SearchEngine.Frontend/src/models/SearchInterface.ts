@@ -16,4 +16,10 @@ export interface SearchResponse {
     totalResults: number;
     totalPages: number;
     message: string; 
+    ignoredTokens?: IgnoredToken[]
+}
+
+export interface IgnoredToken {
+    token: string;
+    language: string;
 }
