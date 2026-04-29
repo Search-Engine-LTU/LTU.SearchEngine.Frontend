@@ -35,7 +35,6 @@ export const fetchFromApi = async (query: string, page: number = 0, language: st
     const url = `${BASE_URL}/search?${params}`;
     
     const response = await fetch(url);
-    
 
     if (!response.ok){
         let errorMessage = "An unexpected error occurred";

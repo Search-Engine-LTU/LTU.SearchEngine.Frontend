@@ -49,8 +49,8 @@ export const useSearch = () => {
         try {
 
             setIsLoading(true);
-            const data = await fetchFromApi(query, page, language);
-            
+            const data: SearchResponse = await fetchFromApi(query, page, language);
+                
             setSearchData({...data});
 
             console.log("Valid query sent to API:", query); 
